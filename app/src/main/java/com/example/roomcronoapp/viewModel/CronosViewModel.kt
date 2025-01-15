@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CronosViewModel @Inject constructor(private val repository: CronosRepository): ViewModel() {
+class CronosViewModel @Inject constructor(private val repository: CronosRepository):ViewModel() {
     private val _cronosList = MutableStateFlow<List<Cronos>>(emptyList())
-    val cronosList = _cronosList.asStateFlow()
+    val cronosList=_cronosList.asStateFlow()
     init {
         viewModelScope.launch(Dispatchers.IO){
             repository.getAllCronos().collect{
@@ -27,4 +27,10 @@ class CronosViewModel @Inject constructor(private val repository: CronosReposito
             }
         }
     }
+    fun addCrono (crono:Cronos)=viewModelScope.launch{repository.addCronos(crono)}
+    fun updateCrono (crono:Cronos)=viewModelScope.launch{repository.updateCronos(crono)}
+    fun deleteCrono (crono:Cronos)=viewModelScope.launch{repository.deleteCronos(crono)}
+
+
+
 }

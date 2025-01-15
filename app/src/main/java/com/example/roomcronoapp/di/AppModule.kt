@@ -16,10 +16,9 @@ import javax.inject.Singleton
 object AppModule {
     @Singleton
     @Provides
-    fun providesCronosDao(cronosDatabase: CronosDataBase): CronosDatabaseDao {
+    fun providesCronosDao(cronosDatabase:CronosDataBase): CronosDatabaseDao{
         return cronosDatabase.cronosDao()
     }
-
     @Singleton
     @Provides
     fun providesCronosDatabase(@ApplicationContext context: Context): CronosDataBase{

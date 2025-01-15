@@ -9,6 +9,8 @@ import androidx.room.Update
 import com.example.roomcronoapp.model.Cronos
 import kotlinx.coroutines.flow.Flow
 
+// Interface vamos a crear los métodos,crearemos un repositorio que usará el viewModel que será el que manejará las vistas
+//Esta interface será un DAO, Data Access Observer
 @Dao
 interface CronosDatabaseDao {
     //Crud
@@ -18,7 +20,7 @@ interface CronosDatabaseDao {
     @Query("SELECT * FROM cronos WHERE id=:id")
     fun getCronosById(id:Long): Flow<Cronos>
 
-    @Insert(onConflict= OnConflictStrategy.REPLACE)
+    @Insert(onConflict=OnConflictStrategy.REPLACE)
     suspend fun insert(cronos:Cronos)
 
     @Update(onConflict=OnConflictStrategy.REPLACE)
